@@ -1,89 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informar Foco de queimada/incêndio</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <style>
-        .bg_person{
-            background-color: rgba(166, 166, 166, 0.2);
-        }
-    </style>
 </head>
+
 <body>
     <header class="container d-flex justify-content-center">
-        <h1>#Alertar foco</h1>
+        <h1><a href="main.html">#Onde Tem Incêndio</a></h1><br>
+        <!-- Pode ser um .png com a logo do sistema -->
     </header>
+
+    <div>
+        <h1 style="text-align:center;">#Alertar foco</h1>
+    </div>
 
     <main>
         <div class="container mt-5">
             <form novalidate class="needs-validation" method="POST">
-                
-                <!-- Dados para o objeto pessoa -->
+                <h4>Informações pessoais.</h4>
 
-                <div class="d-flex flex-column">
-
-                    <div class="align-items-center justify-content-center">
-                        <h3>Suas informações</h3>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nome" class="col-md-2 form-control-label"><strong>Nome</strong></label>
-                        <input type="text" name="nome" id="nome" placeholder="Nome completo" class="form-control col-md-6" required>
-                    </div>
-                    
-                    <!-- é possível validar dados e saber se a pessoa existe somente com o cpf e data de nascimento, porém essa funcionalidade ficará desabilitada.  -->
-
-                    <div class="form-group">
-                        <label for="cpf" class="col-md-2 form-control-label"><strong>CPF</strong></label>
-                        <input type="text" name="cpf" id="cpf" placeholder="CPF" class="form-control col-md-6" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="nasc" class="col-md-2 form-control-label"><strong>Nascimento</strong></label>
-                        <input type="date" name="nasc" id="nasc" class="form-control col-md-4" placeholder="NASCIMENTO" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email" class="col-md-2 form-control-label"><strong>Email</strong></label>
-                        <input type="email" name="nome" id="nome" placeholder="email@email.com" class="form-control col-md-6" required>
-                    </div>
-                
+                <div class="form-group mt-4">
+                    <label for="nome" class="col-md-2 form-control-label"><strong>Nome</strong></label>
+                    <input type="text" name="nome" id="nome" placeholder="Nome completo" class="form-control col-md-6" required>
                 </div>
 
-                <!--Dados sobre o foco-->
-               
-                
-                <div class="d-flex flex-column">
-                   
-                    <div class="align-items-center">
-                        <h3>Sobre o foco</h3>
-                    </div>
-                    
-                    <!-- validar o endereço https://viacep.com.br/ws/01001000/json/ -->
-                    <div class="form-group">
-                       <label for="cep" class="form-control-label"><strong>Cep</strong></label>
-                       <input type="text" name="cep" id="cep" class="form-control col-md-4" placeholder="CEP" required>
-                   </div>
-
-                    <div class="container form-group d-flex flex-column mt-2">
-                        <label for="detalhes" class="col-md-2 form-control-label mt-2"><strong>Detalhes</strong></label>
-                        <textarea name="detalhes" id="detalhes" cols="30" rows="10" class="align-items-center  form-control mt-2 "></textarea>
-                    </div>
-                    
-                    <div class="container d-flex justify-content-center">
-                        <div class="form-group align-items-center">
-                            <button type="button" class="btn btn-dark mt-5" id="alertar">Alertar!</button>
-                        </div>
-                    </div>
-                
+                <!-- é possível validar dados e saber se a pessoa existe somente com o cpf e data de nascimento, porém essa funcionalidade ficará desabilitada.  -->
+                <!-- a api que realiza esse processo é: https://www.sintegraws.com.br/api/documentacao-api-receita-federal-cpf.php-->
+                <div class="form-group">
+                    <label for="cpf" class="col-md-2 form-control-label"><strong>CPF</strong></label>
+                    <input type="text" name="cpf" id="cpf" placeholder="CPF" class="form-control col-md-6" required>
                 </div>
 
-                
-                <!--
+                <div class="form-group">
+                    <label for="nasc" class="col-md-2 form-control-label"><strong>Nascimento</strong></label>
+                    <input type="date" name="nasc" id="nasc" class="form-control col-md-4" placeholder="NASCIMENTO" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email" class="col-md-2 form-control-label"><strong>Email</strong></label>
+                    <input type="text" name="email" id="email" placeholder="email@email.com" class="form-control col-md-6" required>
+                </div>
+
+                <h4>Sobre o foco</h4>
+                <!-- validar o endereço https://viacep.com.br/ws/01001000/json/ -->
+                <div class="form-group mt-4">
+                    <label for="cep" class="col-md-2 form-control-label"><strong>CEP</strong></label>
+                    <input type="text" name="cep" id="cep" class="form-control col-md-4" placeholder="CEP" required>
+                </div>
+
                 <div class="form-gorup">
-                    <label for="estado" class="col-md-4 form-control-label"><strong>Estado do foco</strong></label>
-                    <select name="estado" id="estado" class="custom-select col-md-6">
+                    <label for="estado" class="col-md-4 form-control-label"><strong>Estado do foco</strong></label><br>
+                    <select name="estado" id="estado" class="custom-select col-md-6" disabled>
                         <option value="AC">Acre</option>
                         <option value="AL">Alagoas</option>
                         <option value="AP">Amapá</option>
@@ -113,116 +84,35 @@
                         <option value="TO">Tocantins</option>
                     </select>
                 </div>
-                -->
+        </div>
+        <div class="container form-group d-flex flex-column mt-5">
+            <label for="detalhes" class="col-md-2 form-control-label mt-2"><strong>Detalhes</strong></label>
+            <textarea name="detalhes" id="detalhes" cols="30" rows="10" class="align-items-center col-md-12  form-control mt-2 "></textarea>
+        </div>
+
+        <div class="container d-flex flex-row justify-content-center">
+            <div class="form-group align-items-center">
+                <button type="submit" class="btn btn-danger mt-5" id="alertar">Alertar!</button>
             </div>
+            <div class="form-group align-items-center ml-3">
+                <a href="main.html">
+                    <div class="btn btn-dark mt-5">Voltar</div>
+                </a>
+            </div>
+        </div>
+
 
         </form>
-    
+
 
     </main>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <!--
-    <script>
-
-        class Pessoa{
-
-            constructor(nome,cpf,nascimento){
-                this.nome = nome;
-                this.cpf = cpf;
-                this.nascimento = nascimento;
-                this.email = "";
-            }
-
-            getNome(){
-                return this.nome;
-            }
-
-            getCpf(){
-                return this.cpf;
-            }
-
-            getNascimento(){
-                return this.nascimento;
-            }
-
-            getEmail(){
-                return this.email;
-            }
-
-            setNome(nome){
-                this.nome = nome;
-            }
-
-            setCpf(cpf){
-                this.cpf = cpf;
-            }
-
-            setNascimento(data){
-                this.nascimento = data;
-            }
-
-            setEmail(email){
-                this.email = email;
-            }
-        }
-
-
-
-        class Foco{
-
-            constructor(nome,cpf,data,email,cep,descricao){
-                this.pessoa = new Pessoa(nome,cpf,data);
-                this.pessoa.setEmail(email);
-                this.cep = cep;
-                this.descricao = descricao;
-            }
-
-            getPessoa(){
-                return this.pessoa.getCpf();
-            }
-
-            getCep(){
-                return this.cep;
-            }
-
-            getDescricao(){
-                return this.descricao;
-            }
-
-            setCep(cep){
-                this.cep = cep;
-            }
-
-            setDescricao(desc){
-                this.descricao = desc;
-            }
-
-
-        }
-
-    </script>
--->>
-
-    <script>     
-
-        var alertar = document.querySelector("#alertar");
-        alertar.addEventListener("click",function(e){
-            var nome = document.querySelector("nome").value;
-            var cpf = document.querySelector("cpf").value;
-            var data = document.querySelector("nasc");
-            var email = document.querySelector("email");
-            console.log(nome);
-            console.log(cpf);
-            console.log(data);
-        });
-        
-
-
-
-
-    </script>
+    <!--<script src="../model/Pessoa.js" type="module"></script>
+    <script src="../model/Foco.js" type="module"></script>-->
+    <script src="../controller/AlertarController.js"></script>
 
 </body>
+
 </html>

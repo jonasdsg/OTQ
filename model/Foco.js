@@ -1,12 +1,13 @@
 import {Pessoa} from "./Pessoa.js";
 
-class Foco{
+export default class Foco{
 
-    constructor(nome,cpf,data,email,cep,descricao){
-        this.pessoa = new Pessoa(nome,cpf,data);
+    constructor(pessoa,cep,descricao){
+        this.pessoa = pessoa;
         this.pessoa.setEmail(email);
         this.cep = cep;
         this.descricao = descricao;
+        this.status = true;
     }
 
     getPessoa(){
@@ -29,5 +30,19 @@ class Foco{
         this.descricao = desc;
     }
 
+    setDowStatus(){
+        this.status = false;
+    }
+
     
+    novaPessoa(nome,cpf,data,email){
+        let pessoa = new Pessoa(nome,cpf,data);
+        pessoa.setEmail(email);
+        return pessoa;
+    }
+    
+    novoFoco(nome,cpf,data,email,cep,descricao){
+        let foco = new Foco(ovaPessoa(nome,cpf,data,email),cep,descricao);
+        return foco;
+    }
 }
