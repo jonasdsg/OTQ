@@ -1,9 +1,7 @@
-import {Pessoa} from "./Pessoa.js";
-
 export default class Foco{
 
-    constructor(pessoa,cep,descricao){
-        this.pessoa = pessoa;
+    constructor(cpf,cep,descricao){
+        this.cpf = cpf;
         this.pessoa.setEmail(email);
         this.cep = cep;
         this.descricao = descricao;
@@ -11,7 +9,7 @@ export default class Foco{
     }
 
     getPessoa(){
-        return this.pessoa.getCpf();
+        return this.cpf;
     }
 
     getCep(){
@@ -34,15 +32,4 @@ export default class Foco{
         this.status = false;
     }
 
-    
-    novaPessoa(nome,cpf,data,email){
-        let pessoa = new Pessoa(nome,cpf,data);
-        pessoa.setEmail(email);
-        return pessoa;
-    }
-    
-    novoFoco(nome,cpf,data,email,cep,descricao){
-        let foco = new Foco(ovaPessoa(nome,cpf,data,email),cep,descricao);
-        return foco;
-    }
 }

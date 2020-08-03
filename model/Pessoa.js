@@ -1,10 +1,10 @@
 export default class Pessoa{
 
-    constructor(nome,cpf,nascimento){
+    constructor(nome,cpf,nascimento,email){
         this.nome = nome;
         this.cpf = cpf;
         this.nascimento = nascimento;
-        this.email = "";
+        this.email = email;
     }
 
     getNome(){

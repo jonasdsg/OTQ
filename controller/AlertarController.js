@@ -1,38 +1,24 @@
-//import Pessoa from "../model/Pessoa";
-//const { default: Pessoa } = require("../model/Pessoa");
-
-//Foi adicionado aqui porque os imports não estavam funcionando.
 var json = null;
+//import Pessoa from "../model/Pessoa.js";
 
 class Pessoa{
+
     constructor(nome,cpf,nascimento,email){
         this.nome = nome;
         this.cpf = cpf;
         this.nascimento = nascimento;
-        this.email = email
+        this.email = email;
     }
 }
 
 class Foco{
-    constructor(cpf,cep,descricao){
-        this.quantidade ++;
+
+    constructor(cpf,cep,uf,descricao){
         this.cpf = cpf;
+        this.pessoa.setEmail(email);
         this.cep = cep;
-        this.uf  = "";
         this.descricao = descricao;
         this.status = true;
-    } 
-    setDownStatus(){
-        if(this.quantidade===0)
-            this.status = false;
-        else
-            this.quantidade--;
-    }
-    updateQTD(){
-        this.quantidade ++;
-    }
-
-    setUFE(uf){
         this.uf = uf;
     }
 }
@@ -40,7 +26,6 @@ class Foco{
 
 buscarCep = document.querySelector("#cep");
 buscarCep.addEventListener("input",function(e){
-
     cep = e.target.value;
     if(cep.length>=8){
         console.log(cep)
@@ -52,9 +37,13 @@ buscarCep.addEventListener("input",function(e){
             connect.open('GET',URL_CEP);
             connect.send();
             setTimeout(() => {  
+                option = document.querySelectorAll('option');
                 json = JSON.parse(connect.responseText);  
-                setUF(json.uf.toLowerCase());
-                console.log(connect.responseText);
+                for(i = 0; i<option.length; i++)
+                    if(option[i].value.toLowerCase===json.uf.toLowerCase()){
+                        option[i].setAttribute("selected","");
+                    }
+                
             }, 2000);
 
         }
@@ -63,8 +52,6 @@ buscarCep.addEventListener("input",function(e){
             alert("CEP inválido! Só são permitidos números.");
 
     }
-    
-    
     
 });
 
@@ -75,72 +62,18 @@ alertar.addEventListener("click",function(e){
     //Informações de quem criou o alerta
     nome = document.querySelector("#nome").value;
     cpf = document.querySelector("#cpf").value;
-    data = document.querySelector("#nasc").valueAsDate;
+    nascimento = document.querySelector("#nasc").valueAsDate;
     email = document.querySelector("#email").value;
     
-    
-    pessoa = new Pessoa(nome,cpf,data,email)
+    var pessoa = new Pessoa(nome,cpf,nascimento,email);
     
     //Informações sobre o foco;
     cep = document.querySelector("#cep").value;
     detalhe = document.querySelector("#detalhes").value;
-
-    foco = new Foco(cpf,cep,detalhe);
-    foco.setUFE(json.uf);
-    console.log("instanciar");
-    console.log(pessoa);
-    console.log(foco);
-    adicionarFoco(pessoa,foco);
+    
+    foco = new Foco(cpf,cep,json.uf,detalhe);
+    
+    salvarPessoa(pessoa);
+    salvarFoco(foco);
 
 });
-
-function setUF(e){
-    x = document.querySelectorAll("option");
-    for(i = 0; i<x.length; i++){
-        if(e===x[i].value.toLowerCase()){
-            x[i].selected = true;
-        }
-    }
-}
-
-function getListaDePessoas(){
-    if(localStorage.getItem("pessoas")!=null)
-    {
-        var pessoas_salvas = localStorage.getItem("pessoas");
-        var json_pessoas = JSON.parse(pessoas_salvas);
-        return json_pessoas;
-    }
-    return null;
-}
-
-function getListaDeFocos(){
-    if(localStorage.getItem("focos")!=null)
-    {
-        var focos_salvos = localStorage.getItem("focos");
-        var json_focos = JSON.parse(focos_salvos);
-        return json_focos;
-    }
-    return null;
-}
-
-function adicionarFoco(pessoa,foco){
-   
-
-    if(localStorage.getItem("focos")!=null){
-        var arrayPessoa = getListaDePessoas();
-        var arrayFoco = getListaDeFocos();
-        arrayPessoa.push(pessoa);
-        arrayFoco.push(foco);
-        var tmp_pessoa = JSON.stringify(arrayPessoa);
-        var tmp_foco = JSON.stringify(arrayFoco);
-        localStorage.setItem("focos",tmp_foco);
-        localStorage.setItem("pessoas",tmp_pessoa);
-        
-    }
-    else
-    {
-
-        localStorage.setItem("pessoas",JSON.stringify(pessoa));
-        localStorage.setItem("focos",JSON.stringify(foco));
-    }
-}

@@ -1,22 +1,30 @@
-class Pessoa{
-    constructor(nome,cpf,nascimento,email){
-        this.nome = nome;
-        this.cpf = cpf;
-        this.nascimento = nascimento;
-        this.email = email
+function salvarPessoa(p){
+    arrPessoas = [];
+    
+    if((arrPessoas = obterJson('p'))!=null){
+        arrPessoas.push(p);
+        var save = JSON.stringify(arrPessoas);
+        localStorage.setItem('p',save);
     }
+    else
+        localStorage.setItem('p',JSON.stringify(p));
 }
 
-class Foco{
-    constructor(pessoa,cep,descricao){
-        this.pessoa = pessoa;
-        this.pessoa.setEmail(email);
-        this.cep = cep;
-        this.descricao = descricao;
-        this.status = true;
-    } 
-    setDownStatus(){
-        this.status = false;
+
+function salvarFoco(f){
+    if((arrFocos = obterJson('f'))!=null){
+        arrFocos.push(f);
+        var save = JSON.stringify(arrFocos);
+        localStorage.setItem('f',save);
     }
+    else
+        localStorage.setItem('f',f);
 }
 
+function obterJson(key){
+    if(localStorage.getItem(key)!=null){
+        var local = localStorage.getItem('p');
+        return JSON.parse(local);
+    }
+    return null;
+}
