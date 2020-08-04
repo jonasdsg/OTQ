@@ -15,7 +15,6 @@ class Foco{
 
     constructor(cpf,cep,uf,descricao){
         this.cpf = cpf;
-        this.pessoa.setEmail(email);
         this.cep = cep;
         this.descricao = descricao;
         this.status = true;
@@ -33,14 +32,15 @@ buscarCep.addEventListener("input",function(e){
 
         if(!isNaN(cep))
         {
+            option = document.querySelectorAll('option');
             var URL_CEP = "https://viacep.com.br/ws/"+cep+"/json/";
             connect.open('GET',URL_CEP);
             connect.send();
             setTimeout(() => {  
-                option = document.querySelectorAll('option');
+                
                 json = JSON.parse(connect.responseText);  
                 for(i = 0; i<option.length; i++)
-                    if(option[i].value.toLowerCase===json.uf.toLowerCase()){
+                    if(option[i].value.toLowerCase()===json.uf.toLowerCase()){
                         option[i].setAttribute("selected","");
                     }
                 
@@ -71,7 +71,7 @@ alertar.addEventListener("click",function(e){
     cep = document.querySelector("#cep").value;
     detalhe = document.querySelector("#detalhes").value;
     
-    foco = new Foco(cpf,cep,json.uf,detalhe);
+    var foco = new Foco(cpf,cep,json.uf,detalhe);
     
     salvarPessoa(pessoa);
     salvarFoco(foco);
