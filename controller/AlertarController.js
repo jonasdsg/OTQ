@@ -14,11 +14,15 @@ class Pessoa{
 class Foco{
 
     constructor(cpf,cep,uf,descricao){
+        this.bairro = "";
         this.cpf = cpf;
         this.cep = cep;
         this.descricao = descricao;
         this.status = true;
         this.uf = uf;
+    }
+    addBairro(bairro){
+        this.bairro = bairro;
     }
 }
 
@@ -72,7 +76,7 @@ alertar.addEventListener("click",function(e){
     detalhe = document.querySelector("#detalhes").value;
     
     var foco = new Foco(cpf,cep,json.uf,detalhe);
-    
+    foco.addBairro(json.logradouro);
     salvarPessoa(pessoa);
     salvarFoco(foco);
 

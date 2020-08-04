@@ -1,42 +1,50 @@
-function salvarPessoa(p){
+const KEY_FOCO = 'F';
+const KEY_PESS = 'P';
+
+function salvarPessoa(pessoa){
     debugger
-    var arrPessoas = [];
+    var arrPessoas = obterJson(KEY_PESS);
     
-    if((arrPessoas = obterJson('p'))!=null){
-        arrPessoas.push(p);
+    if(arrPessoas.legth>0){
+        arrPessoas.push(pessoa);
         var save = JSON.stringify(arrPessoas);
-        console.log(save);
-        localStorage.setItem('p',save);
+        localStorage.setItem(KEY_PESS,save);
     }
     else{
-        arrPessoas[0] = p;
+        arrPessoas.push(pessoa);
         var save = JSON.stringify(arrPessoas);
-        localStorage.setItem('p',save);
+        localStorage.setItem(KEY_PESS,save);
     }
 }
 
-
-function salvarFoco(f){
+function salvarFoco(foco){
     debugger
-    var arrFocos = [];
-    if((arrFocos = obterJson('f'))!=null){
-        arrFocos.push(f);
+    var arrFocos = obterJson(KEY_FOCO);
+    if(arrFocos.legth>0){
+        arrFocos.push(foco);
         var save = JSON.stringify(arrFocos);
-        console.log(save)
-        localStorage.setItem('f',save);
+        localStorage.setItem(KEY_FOCO,save);
     }
     else{
-        arrFocos.push(f);
+        arrFocos.push(foco)
         var save = JSON.stringify(arrFocos);
-        localStorage.setItem('f',save);
+        localStorage.setItem(KEY_FOCO,save);
     }
 }
 
 function obterJson(key){
-    if(localStorage.getItem(key)!=null){
-        var local = localStorage.getItem('p');
+    var local = localStorage.getItem(key);
+    if(local!=null){
         var parse = JSON.parse(local);
         return parse;
     }
-    return null;
+    return [];
+}
+
+function preencherUL(titulo,quantidade,detalhe){
+    var focos = obterJson(KEY_FOCO);
+    var pessoas = obterJson(KEY_PESS);
+    var ul = document.querySelector("ul");
+    ul.appendChild((new NovaLista(titulo,quantidade,detalhe)).retornarLista());
+
 }
