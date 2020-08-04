@@ -5,6 +5,6 @@ var x = document.querySelector("body");
         console.log(e.target);
         console.log(local);
         local = local.replace('#','');
-        sessionStorage.setItem("state",local);
+        sessionStorage.setItem("clicked_state",local);
         window.location = "./listagem.html";
       });

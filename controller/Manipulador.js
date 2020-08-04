@@ -2,7 +2,6 @@ const KEY_FOCO = 'F';
 const KEY_PESS = 'P';
 
 function salvarPessoa(pessoa){
-    debugger
     var arrPessoas = obterJson(KEY_PESS);
     
     if(arrPessoas.legth>0){
@@ -18,7 +17,6 @@ function salvarPessoa(pessoa){
 }
 
 function salvarFoco(foco){
-    debugger
     var arrFocos = obterJson(KEY_FOCO);
     if(arrFocos.legth>0){
         arrFocos.push(foco);
