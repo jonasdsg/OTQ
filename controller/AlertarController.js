@@ -80,8 +80,7 @@ alertar.addEventListener("click",function(e){
     
     var foco = new Foco(cep,json.uf,detalhe);
     foco.addBairro(json.logradouro);
-    foco.addPessoa(cpf);
     salvarPessoa(pessoa);
-    salvarFoco(foco);
+    salvarFoco(foco,cpf);
 
 });

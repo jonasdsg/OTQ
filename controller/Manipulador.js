@@ -16,19 +16,22 @@ function salvarPessoa(pessoa){
     }
 }
 
-function salvarFoco(foco){
+function salvarFoco(foco,cpf){
     debugger
     var arrFocos = obterJson(KEY_FOCO);
     var jaExiste = false;
     
-    if(arrFocos.legth>0){
+    if(arrFocos.length>0){
         for(i = 0; i<arrFocos.length; i++){
-            if(arrFocos[i].cep===foco.cep)
+            if(arrFocos[i].cep===foco.cep){
                 jaExiste = true;
+                arrFocos[i].addPessoa(cpf);
+            }
         }
     }
     
-    else if(jaExiste==false){
+    if(!jaExiste){
+        foco.cpfs.push(cpf)
         arrFocos.push(foco)
         var save = JSON.stringify(arrFocos);
         localStorage.setItem(KEY_FOCO,save);
