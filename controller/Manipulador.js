@@ -17,13 +17,18 @@ function salvarPessoa(pessoa){
 }
 
 function salvarFoco(foco){
+    debugger
     var arrFocos = obterJson(KEY_FOCO);
+    var jaExiste = false;
+    
     if(arrFocos.legth>0){
-        arrFocos.push(foco);
-        var save = JSON.stringify(arrFocos);
-        localStorage.setItem(KEY_FOCO,save);
+        for(i = 0; i<arrFocos.length; i++){
+            if(arrFocos[i].cep===foco.cep)
+                jaExiste = true;
+        }
     }
-    else{
+    
+    else if(jaExiste==false){
         arrFocos.push(foco)
         var save = JSON.stringify(arrFocos);
         localStorage.setItem(KEY_FOCO,save);
@@ -39,10 +44,32 @@ function obterJson(key){
     return [];
 }
 
-function preencherUL(titulo,quantidade,detalhe){
+function criarElementosDaLista(titulo,quantidade,detalhe){
     var focos = obterJson(KEY_FOCO);
     var pessoas = obterJson(KEY_PESS);
     var ul = document.querySelector("ul");
     ul.appendChild((new NovaLista(titulo,quantidade,detalhe)).retornarLista());
 
+}
+
+function preencherUL(uf){
+    var arrFocos = [];
+    var arrPessoas = [];
+    arrFocos = obterJson(KEY_FOCO);
+    arrPessoas = obterJson(KEY_PESS);
+    
+    for(i = 0; i<arrFocos.length; i++){
+        var quantidade = 0;
+        if(arrFocos[i].uf.toLowerCase()===uf.toLowerCase()){
+            todosOsCpfsDesseFoco = arrFocos[i].cpfs;
+            for(x = 0; x<todosOsCpfsDesseFoco.length;x++){
+                for(j = 0; j<arrPessoas.length; j++){
+                    if(arrPessoas[j].cpf.toLowerCase()===todosOsCpfsDesseFoco[x].toLowerCase())
+                        quantidade++;
+                }
+            }
+            criarElementosDaLista(arrFocos[i].bairro,quantidade,arrFocos[i].descricao);
+        }
+        
+    }
 }

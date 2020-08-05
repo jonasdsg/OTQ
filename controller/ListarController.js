@@ -72,21 +72,15 @@ class NovaLista{
         select.appendChild(option);    
     }
 
+    preencherUL(clicked_state);
 // -- Preencher a ul.
-    preencherUL("Floresta da tijuca",5,"Inicio hoje");
-    preencherUL("Floresta da tijuca",5,"Inicio hoje");
-    preencherUL("Floresta da tijuca",5,"Inicio hoje");
-
-
-    /*
-
-    if(focos.length>0){
-        var quantidade = 0;
-        for(i = 0; i<pessoas.length; i++){
-
+    select.addEventListener("click",function(evento){
+        var tag = evento.target;
+        if(tag.tagName==="OPTION"){
+            console.log(tag.value);
+            preencherUL(tag.value);
         }
-    }
-    else{
-        alert("Não há focos cadastrados!");
-    }
-*/
+        
+    })
+
+    
