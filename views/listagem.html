@@ -29,33 +29,36 @@
 
 <body>
 
-    <header class="container d-flex justify-content-center">
-        <h1><a href="main.html">#Onde Tem Incêndio</a></h1><br>
+    <header class="container">
+        <h1 class="d-flex justify-content-center"><a href="main.html">#Onde Tem Incêndio</a></h1>
+        <a class="d-flex justify-content-end" href="../views/alerta.html"><span class="btn-sm btn-danger">#Alerte!</span></a>
         <!-- Pode ser um .png com a logo do sistema -->
     </header>
 
-    <div class="container">
+    <main class="container">
         <div class="d-flex flex-column">
 
             <div class="form-gorup" id="main_list">
                 <label for="estado" class="col-sm-4 form-control-label"><strong>UF</strong></label>
                 <select name="estado" id="estado" class="custom-select col-sm-6">
                     <!-- Aqui serão adicionados os nodes option -->
-                </select>
+                </select>                
             </div>
 
 
             <ul class="d-flex flex-row list-group mt-10 flex-wrap">
 
                <!--os nodes serão inseridos aqui pelo controller-->
-               <!-- Exemplo -->
-               <!--<li class="list-group-item list-group-action">
+               <!--  Estrutura de Exemplo
+                <--
+                   <li class="list-group-item list-group-action">
                         <header class="d-flex flex-row">
                             <strong class="align-items-start">Floresta da tijuca</strong>
                             <span class="ml-2 badge badge-warning align-items-end">23</span>
                         </header>
                         <main class="flex-row"><small>Tá pegando fogo bixo!</small></main>
-                   </li> -->
+                   </li> 
+                -->
 
                 </li>
 
@@ -63,9 +66,8 @@
 
             </ul>
 
-        
         </div>
-    </div>
+    </main>
 
     <script src="../controller/Manipulador.js"></script>
     <script src="../controller/ListarController.js"></script>
